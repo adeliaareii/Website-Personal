@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opaline - Skin Care & Beauty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+    body {
+        background: linear-gradient(to bottom right, #ffffff, #d288f4, #ffffff);
+    }
+
+   .product-card {
+        transition: all 0.2s ease;
+    }
+
+    .product-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+    }
+
+    .product-card:active {
+        transform: translateY(-2px) scale(0.96);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    .slider-img {
+        display: none;
+        animation: fade 1s ease-in-out;
+    }
+    .slider-img.active {
+        display: block;
+    }
+    @keyframes fade {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+    /* Floating animation */
+    .floating {
+        animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+        0%,100% { transform: translateY(0px);}
+        50% { transform: translateY(-10px);}
+    }
+    /* Gradient pastel button */
+    .btn-pastel {
+        background: linear-gradient(135deg, #fbcfe8, #ddd6fe);
+        color: #6b21a8;
+    }
+    .btn-pastel:hover {
+        opacity: 0.85;
+    }
+    /* Navbar blur effect */
+    nav {
+        backdrop-filter: blur(10px);
+        background: rgba(255,255,255,0.7);
+    }
+    @keyframes fadeUp {
+        from {
+        opacity: 0;
+        transform: translateY(20px);
+       }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        }
+    }
+    @keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+    }
+    .animate-zoom {
+        animation: zoomIn 0.3s ease;
+    }
+    .fade-up {
+        animation: fadeUp 0.6s ease forwards;
+    }
+    .btn-click {
+        transition: all 0.2s;
+    }
+    .btn-click:active {
+        transform: scale(0.95);
+    }
+</style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <div class="bg-gray-100 text-[10px] text-center py-1 tracking-widest uppercase">Gratis ongkos kirim ke seluruh Indonesia</div>
+    <nav class="bg-#ca9edf shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-[0.2em] text-gray-800 cursor-pointer">Opaline Beauty</h1>
+            <div class="hidden md:flex space-x-8 text-xs font-semibold uppercase tracking-wider">
+                
+                <div class="hidden md:flex space-x-8 text-xs font-semibold uppercase tracking-wider">
+    
+                <a href="#" onclick="renderProducts('all')" class="hover:text-purple-400">Semua Katalog</a>
+
+               <!-- DROPDOWN SKINCARE -->
+           <div class="relative group">
+               <a href="#" class="hover:text-purple-400" onclick="renderProducts('skincare')">SKIN CARE</a>
+           <div class="absolute hidden group-hover:block bg-white shadow-lg mt-2 p-4 text-xs space-y-2 rounded">
+                <a href="#" onclick="renderProducts('skincare','all')" class="block hover:text-purple-400">Semua</a>
+                <a href="#" onclick="renderProducts('skincare','serum')" class="block hover:text-purple-400">Serum</a>
+                <a href="#" onclick="renderProducts('skincare','moisturizer')" class="block hover:text-purple-400">Moisturizer</a>
+                <a href="#" onclick="renderProducts('skincare','toner')" class="block hover:text-purple-400">Toner</a>
+                <a href="#" onclick="renderProducts('skincare','sunscreen')" class="block hover:text-purple-400">Sunscreen</a>
+                <a href="#" onclick="renderProducts('skincare','cleanser')" class="block hover:text-purple-400">Cleanser</a>
+                <a href="#" onclick="renderProducts('skincare','lipcare')" class="block hover:text-purple-400">Lip Care</a>
+             </div>
+          </div>
+                 
+                <a href="#" class="hover:text-purple-400" onclick="renderProducts('bundling')">Bundling</a>
+            
+            </div>
+            <div class="flex items-center space-x-5">
+                <button onclick="alert('Fitur Pencarian Aktif')" class="text-lg hover:scale-110 transition"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button onclick="alert('Menu Akun')" class="text-lg hover:scale-110 transition"><i class="fa-regular fa-user"></i></button>
+                <button onclick="toggleCart()" class="text-lg relative hover:scale-110 transition">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-purple-600 text-white text-[9px] font-bold rounded-full px-1.5 py-0.5">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="relative w-full h-[350px] md:h-[500px] overflow-hidden bg-gray-200">
+        <div class="slider-img active h-full relative">
+            <img src="skincare/poto10.png" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/10 flex flex-col justify-center px-10">
+                <h2 class="text-4xl md:text-6xl font-light text-white leading-tight">SKIN CARE <br> <span class="font-bold">Sehat & Alami</span></h2>
+                <button onclick="scrollToCatalog()"class="btn-click mt-6 w-max bg-black text-white px-8 py-3 text-xs font-bold uppercase tracking-widest hover:bg-black transition">Lihat Koleksi</button>
+            </div>
+        </div>
+        <div class="slider-img h-full relative">
+            <img src="skincare/header1.jpeg" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/20 flex flex-col justify-center items-center text-center px-10">
+                <h2 class="text-4xl md:text-6xl font-bold text-white uppercase tracking-tighter">Promo Awal Tahun</h2>
+                <p class="text-white mt-2 tracking-widest">Diskon hingga 50% untuk produk pilihan</p>
+            </div>
+        </div>
+        <button onclick="moveSlider(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white p-3 rounded-full transition">❮</button>
+        <button onclick="moveSlider(1)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white p-3 rounded-full transition">❯</button>
+    </div>
+
+    <div id="katalog" class="container mx-auto px-4 py-16">
+        <h3 class="text-center text-2xl font-bold mb-2 tracking-tight">Produk Terbaru</h3>
+        <div class="w-20 h-1 bg-purple-400 mx-auto mb-12"></div>
+        
+        <div id="product-grid" class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            </div>
+    </div>
+
+    <div id="detail-modal" class="fixed inset-0 bg-black/60 hidden z-[100] flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white max-w-3xl w-full rounded-xl overflow-hidden flex flex-col md:flex-row shadow-2xl animate-zoom">
+            <div class="w-full md:w-1/2 h-80 md:h-auto overflow-hidden">
+                <img id="modal-img" src="" class="w-full h-full object-cover transform hover:scale-110 transition duration-500">
+            </div>
+            <div class="p-8 flex-1 flex flex-col justify-center">
+                <div class="flex justify-between items-start mb-4">
+                    <h2 id="modal-title" class="text-3xl font-bold text-gray-800"></h2>
+                    <button onclick="closeModal()" class="text-2xl text-gray-400 hover:text-black">&times;</button>
+                </div>
+                <p id="modal-price" class="text-black font-bold text-2xl mb-4"></p>
+                <p id="modal-desc" class="text-gray-600 text-sm leading-relaxed mb-8"></p>
+                
+                
+                <div class="flex flex-col gap-3">
+                    <button onclick="addToCartFromModal()" class="btn-click w-full bg-[#EDE9FE] text-[#6D28D9] py-4 rounded-lg font-bold hover:bg-[#DDD6FE] transition uppercase tracking-widest text-xs">Masukan Ke Keranjang</button>
+                    <button onclick="directOrder()" class="btn-click w-full bg-[#8B5CF6] text-white py-4 rounded-lg font-bold hover:bg-[#7C3AED] transition uppercase tracking-widest text-xs shadow-lg shadow-purple-200">Pesan Langsung (WhatsApp)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="cart-sidebar" class="fixed right-0 top-0 h-full w-full md:w-[400px] bg-white shadow-2xl z-[110] transform translate-x-full transition-transform duration-500 ease-in-out p-8 flex flex-col">
+        <div class="flex justify-between items-center mb-8 border-b pb-4">
+            <h2 class="text-xl font-bold tracking-tight">Keranjang Belanja</h2>
+            <button onclick="toggleCart()" class="text-3xl font-light hover:rotate-90 transition duration-300">&times;</button>
+        </div>
+
+        <div id="cart-items" class="flex-1 overflow-y-auto space-y-6 pr-2">
+            <p class="text-center text-gray-400 mt-10">Keranjang masih kosong...</p>
+        </div>
+
+        <div class="border-t pt-6 mt-6">
+            <div class="mb-4">
+                <label class="text-[10px] uppercase font-bold text-gray-400 block mb-1">Punya Kode Promo?</label>
+                <div class="flex gap-2">
+                    <input type="text" id="promo-input" placeholder="Contoh: OPALINE" class="flex-1 border border-gray-200 p-3 text-sm rounded focus:outline-none focus:border-purple-400">
+                    <button onclick="applyPromo()" class="btn-click bg-gray-800 text-white px-4 py-2 text-xs font-bold rounded hover:bg-black transition">CEK</button>
+                </div>
+                <div id="promo-msg" class="mt-2 text-xs font-medium"></div>
+            </div>
+
+            <div class="space-y-2 mb-6">
+                <div class="flex justify-between text-gray-500 text-sm">
+                    <span>Subtotal</span>
+                    <span id="subtotal-price">Rp0</span>
+                </div>
+                <div id="discount-row" class="flex justify-between text-green-600 text-sm hidden">
+                    <span id="promo-name">Diskon</span>
+                    <span id="discount-val">-Rp0</span>
+                </div>
+                <div class="flex justify-between font-bold text-xl border-t pt-2 mt-2">
+                    <span>Total Akhir</span>
+                    <span id="total-price">Rp0</span>
+                </div>
+            </div>
+            
+                    <button onclick="checkoutWhatsApp()"class="btn-click w-full bg-black text-white py-4 rounded font-bold hover:bg-gray-800 transition uppercase tracking-widest text-xs">Lanjutkan Ke Pembayaran</button>
+                </div>
+            </div>
+
+    <script>
+        const products = [
+            { id: 1, name: "Soy Bright! Moisturizer", category: "skincare", subCategory: "moisturizer", price: 150000, img: "skincare/poto1.jpeg", desc: "Mencerahkan, melembapkan, Merawat skin-barrier, melembutkan dan membantu mencegah tanda-tanda penuaan dini pada kulit wajah." },
+            { id: 2, name: "Ocean Blue Pea DUAL-PHASE ESSENCE MIST", category: "skincare", subCategory: "serum", price: 190000, img: "skincare/poto2.jpeg", desc: "Diformulasikan untuk membantu mempercepat penyerapan bahan aktif, untuk melembapkan kulit dan mencegah TEWL (Transepidermal Water Loss). Dapat mencegah penuaan dini serta kaya akan antioksidan yang membantu menjaga kesehatan skin barrier, menjaga stabilitas mikrobioma kulit dan menenangkan kemerahan, peradangan, serta membantu mencerahkan kulit." },
+            { id: 3, name: "Oatstanding BHA + LHA Acne Serum", category: "skincare", subCategory: "serum", price: 120000, img: "skincare/poto3.jpeg", desc: "Merawat kulit berjerawat, melawan bakteri penyebab jerawat, membantu mencerahkan noda bekas jerawat, dan melembapkan kulit wajah sehingga kulit tampak sehat dan terasa halus."},
+            { id: 4, name: "Hyd-rice-ing & Brightening", category: "skincare", subCategory: "toner", price: 150000, img: "skincare/poto4.jpeg", desc: "Diformulasikan untuk mencerahkan, menenangkan, dan menghidrasi kulit wajah sehingga terasa lembut dan halus."},
+            { id: 5, name: "Soy Clear! Brightening & Dark Spot Serum", category: "skincare", subCategory: "serum", price: 135000, img: "skincare/poto5.jpeg", desc: "Mencerahkan kulit wajah, menutrisi dan merawat kulit wajah, sehingga wajah terasa lembut dan lembap."},
+            { id: 6, name: "Sun-Rice All Day Invisible UV Shield SPF 50 PA++++", category: "skincare", subCategory: "sunscreen", price: 90000, img: "skincare/poto6.jpeg", desc: "Diformulasikan untuk memproteksi kulit dari bahaya sinar UV di cahaya matahari."},
+            { id: 7, name: "Soy Gentle! Face Cleanser", category: "skincare", subCategory: "cleanser", price: 150000, img: "skincare/poto7.jpeg", desc: "Membersihkan kulit wajah dari minyak, kotoran, debu dan sisa make up dengan membantu mengangkat sel-sel kulit mati." },
+            { id: 8, name: "C+U Honey Lip Serum", category: "skincare", subCategory: "lipcare", price: 150000, img: "skincare/poto8.jpeg", desc: "Diformulasikan dengan Vitamin C, Ubiquinone dan Manuka Honey untuk mencerahkan, melembapkan dan mengurangi tampilan bibir yang gelap" },
+            { id: 9, name: "Triple Vitamin B-arrier + Peach + Snail Mucin", category: "skincare", subCategory: "toner", price: 150000, img: "skincare/poto13.jpeg", desc: "Diformulasikan untuk membantu merawat skin barrier, melembapkan, menjaga hidrasi, serta meningkatkan kekencangan kulit. Selain itu, berfungsi menenangkan dan menutrisi kulit." },
+            { id: 10, name: "Peach + Vitamin B12 Double Barrier & Calming Serum", category: "skincare", subCategory: "serum", price: 150000, img: "skincare/poto14.jpeg", desc: "Diformulasikan dengan Vitamin C, Ubiquinone dan Manuka Honey untuk mencerahkan, melembapkan dan mengurangi tampilan bibir yang gelap" },
+            { id: 11, name: "Copper Peptide + Caviar Double Revive Serum", category: "skincare", subCategory: "serum", price: 150000, img: "skincare/poto16.jpeg", desc: "Diformulasikan dengan kandungan bahan aktif pilihan yang dapat merawat dan melembapkan kulit wajah, merawat kelembutan dan kekenyalan kulit, sehingga kulit wajah terasa halus dan lembut." },
+            { id: 12, name: "Bundle 2 PCS", category: "bundling", price: 150000, img: "skincare/bundling1.jpeg", desc: "Moisturizer & Makeup Primer 3og + Hydrating & Brightening Essence Booster 100ml" },
+            { id: 13, name: "Bright Prep Kit", category: "bundling", price: 150000, img: "skincare/bundling3.jpeg", desc: "Rice Serum + Soy Clear + Free Rice Toner" },
+            { id: 14, name: "Brightening Set", category: "bundling", price: 150000, img: "skincare/bundling2.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Brightening & Dark Spot Serum 20ml+ Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
+            { id: 15, name: "Exfoliating Set", category: "bundling", price: 150000, img: "skincare/bundling5.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Exfoliating Serum 20ml + Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
+            { id: 16, name: "Acne Set", category: "bundling", price: 150000, img: "skincare/bundling6.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Acne Serum 20ml + Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
+            { id: 17, name: "Skin-Barrier Set", category: "bundling", price: 150000, img: "skincare/bundling7.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Double Barrier & Calming Serum 20ml Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
+            { id: 18, name: "Anti-Aging Glowing Set", category: "bundling", price: 150000, img: "skincare/bundling8.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Copper Peptide Double Revive Serum 20ml Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
+
+        
+        ];
+
+        let cart = [];
+        let selectedProduct = null;
+        let discountAmount = 0;
+        let activePromoLabel = "";
+
+        // 1. RENDER KATALOG PRODUK
+        function renderProducts(category = "all", sub = "all") {
+            const grid = document.getElementById('product-grid');
+            const filtered = products.filter(p => {
+                if (category === "all") return true;
+                if (sub === "all") return p.category === category;
+                return p.category === category && p.subCategory === sub;
+                });
+            grid.innerHTML = filtered.map(p => `
+                <div class="bg-white p-4 product-card fade-up-border border-gray-100 rounded shadow-sm cursor-pointer group" onclick="openModal(${p.id})">
+                    <div class="relative overflow-hidden mb-4 rounded">
+                        <img src="${p.img}" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <h4 class="text-sm font-bold text-center text-gray-700 uppercase h-10 overflow-hidden">${p.name}</h4>
+                    <p class="text-center font-bold text-black-600 mt-2">Rp${p.price.toLocaleString('id-ID')}</p>
+                    <button onclick="event.stopPropagation(); addToCart(${p.id})" class="btn-click mt-4 w-full bg-[#C4B5FD] text-white py-3 text-[10px] font-bold uppercase tracking-widest hover:bg-[#A78BFA] transition">Tambah ke keranjang</button>
+                </div>
+            `).join('');
+        }
+
+        // 2. SLIDER LOGIC
+        let slideIndex = 0;
+        function moveSlider(n) {
+            const slides = document.querySelectorAll('.slider-img');
+            slides[slideIndex].classList.remove('active');
+            slideIndex = (slideIndex + n + slides.length) % slides.length;
+            slides[slideIndex].classList.add('active');
+        }
+        setInterval(() => moveSlider(1), 15000); // Auto slide setiap 5 detik
+
+        // 3. CART SYSTEM
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('translate-x-full');
+        }
+
+        function addToCart(id) {
+            const prod = products.find(p => p.id === id);
+            const exists = cart.find(item => item.id === id);
+            if (exists) {
+            exists.qty++;
+            } else {
+            cart.push({...prod, qty: 1, checked: true}); // default dicentang
+            }
+            updateCartUI();
+            if(!document.getElementById('cart-sidebar').classList.contains('translate-x-full')) return;
+            toggleCart(); // Auto buka sidebar kalau tambah barang
+            
+        }
+
+        function changeQty(index, n) {
+            cart[index].qty += n;
+            if (cart[index].qty <= 0) cart.splice(index, 1);
+            updateCartUI();
+        }
+        // Toggle centang per item di keranjang
+        function toggleItem(index) {
+            cart[index].checked = !cart[index].checked;
+            updateCartUI();
+        }
+        function checkoutWhatsApp() {
+            const itemsToOrder = cart.filter(item => item.checked);
+            if(itemsToOrder.length === 0) {
+            alert("Pilih barang yang mau dibeli dulu!");
+            return;
+            }
+
+            let msg = "Halo OPALINE, saya mau pesan via Web:\n";
+            itemsToOrder.forEach(item => {
+            msg += `Barang: ${item.name}\nHarga: Rp${item.price.toLocaleString('id-ID')}\nQty: ${item.qty}\n\n`;
+            });
+
+            const total = itemsToOrder.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            msg += `Total: Rp${total.toLocaleString('id-ID')}\nMohon diproses ya!`;
+
+            window.open(`https://wa.me/6285894574737?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+        // 4. PROMO SYSTEM
+        function applyPromo() {
+            const code = document.getElementById('promo-input').value.trim().toUpperCase();
+            const subtotal = cart.filter(item => item.checked).reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const msgEl = document.getElementById('promo-msg');
+            
+            discountAmount = 0;
+            activePromoLabel = "";
+
+            if (subtotal === 0) {
+                msgEl.innerText = "Isi keranjang dulu!";
+                msgEl.className = "mt-2 text-xs font-medium text-red-500";
+                return;
+            }
+
+            if (code === "OPALINE") {
+                discountAmount = subtotal * 0.1;
+                activePromoLabel = "Diskon Member Baru 10%";
+            } else if (code === "SKINCARE20" && subtotal >= 300000) {
+                discountAmount = subtotal * 0.2;
+                activePromoLabel = "Promo Skincare 20%";
+            } else if (code === "FLASHGLOW" && subtotal >= 500000) {
+                discountAmount = 150000;
+                activePromoLabel = "Potongan Cantik Rp50rb";
+            } else if (code === "RADIANCE20") {
+                discountAmount = 200000;
+                activePromoLabel = "Subsidi Ongkir";
+            } else if (code === "FLASHSALE") {
+                discountAmount = 100000;
+                activePromoLabel = "Flash Sale";
+            } else if (code === "PAKETGLOW") {
+                discountAmount = 250000;
+                activePromoLabel = "Potongan Harga Untuk Paket Skincare";
+            } else if (code === "") {
+                msgEl.innerText = "";
+            } else {
+                msgEl.innerText = "Kode tidak valid / syarat tidak cukup";
+                msgEl.className = "mt-2 text-xs font-medium text-red-500";
+                updateCartUI();
+                return;
+            }
+
+            msgEl.innerText = activePromoLabel ? "Kode Berhasil Digunakan!" : "";
+            msgEl.className = "mt-2 text-xs font-medium text-green-600";
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items');
+            const subtotalEl = document.getElementById('subtotal-price');
+            const discountRow = document.getElementById('discount-row');
+            const totalEl = document.getElementById('total-price');
+            const countEl = document.getElementById('cart-count');
+
+            let subtotal = 0;
+            let count = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-400 mt-10">Keranjang masih kosong...</p>';
+                discountAmount = 0;
+            } else {
+                container.innerHTML = cart.map((item, i) => {
+                    if (item.checked) {
+                    subtotal += item.price * item.qty;
+                    }
+                    count += item.qty; // ini biarin (buat icon jumlah)
+                    return `
+                        <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-lg">
+
+                        <input type="checkbox" ${item.checked ? "checked" : ""} 
+                        onchange="toggleItem(${i})" class="w-4 h-4 accent-purple-500">
+
+                       <img src="${item.img}" class="w-16 h-16 object-cover rounded">
+
+                       <div class="flex-1">
+                       <h5 class="text-[11px] font-bold uppercase tracking-tight">${item.name}</h5>
+                       <p class="text-black font-bold text-xs mt-1">Rp${item.price.toLocaleString('id-ID')}</p>
+        
+                       <div class="flex items-center gap-3 mt-2">
+                          <button onclick="changeQty(${i}, -1)" class="w-6 h-6 bg-white border rounded">-</button>
+                          <span>${item.qty}</span>
+                         <button onclick="changeQty(${i}, 1)" class="w-6 h-6 bg-white border rounded">+</button>
+                       </div>
+                 </div>
+
+                      <p class="font-bold text-sm">
+                      Rp${(item.price * item.qty).toLocaleString('id-ID')}
+                      </p>
+                 </div>
+                `;
+                }).join('');
+            }
+
+            // Validasi ulang diskon jika subtotal berubah
+            if (activePromoLabel === "Promo Skincare 20%" && subtotal < 300000) discountAmount = 0;
+            if (activePromoLabel === "Potongan Cantik Rp50rb" && subtotal < 500000) discountAmount = 0;
+
+            subtotalEl.innerText = `Rp${subtotal.toLocaleString('id-ID')}`;
+            countEl.innerText = count;
+
+            if (discountAmount > 0) {
+                discountRow.classList.remove('hidden');
+                document.getElementById('promo-name').innerText = activePromoLabel;
+                document.getElementById('discount-val').innerText = `-Rp${discountAmount.toLocaleString('id-ID')}`;
+            } else {
+                discountRow.classList.add('hidden');
+            }
+
+            totalEl.innerText = `Rp${Math.max(0, subtotal - discountAmount).toLocaleString('id-ID')}`;
+        }
+
+        // 5. MODAL DETAIL
+        function openModal(id) {
+            selectedProduct = products.find(p => p.id === id);
+            document.getElementById('modal-title').innerText = selectedProduct.name;
+            document.getElementById('modal-price').innerText = `Rp${selectedProduct.price.toLocaleString('id-ID')}`;
+            document.getElementById('modal-img').src = selectedProduct.img;
+            document.getElementById('detail-modal').classList.remove('hidden');
+            document.getElementById('modal-desc').innerText = selectedProduct.desc;
+        }
+
+        function closeModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        function addToCartFromModal() {
+            addToCart(selectedProduct.id);
+            closeModal();
+        }
+
+        function directOrder() {
+            const msg = `Halo OPALINE, saya mau pesan via Web:\nBarang: ${selectedProduct.name}\nHarga: Rp${selectedProduct.price.toLocaleString('id-ID')}\nMohon diproses ya!`;
+            window.open(`https://wa.me/6285894574737?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+        function scrollToCatalog() {
+            document.getElementById("katalog").scrollIntoView({behavior: "smooth"});
+        }
+        // Inisialisasi
+        renderProducts();
+    </script>
+</body>
+</html>
