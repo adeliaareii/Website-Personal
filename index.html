@@ -100,23 +100,23 @@
                 
                 <div class="hidden md:flex space-x-8 text-xs font-semibold uppercase tracking-wider">
     
-                <a href="#" onclick="renderProducts('all')" class="hover:text-purple-400">Semua Katalog</a>
+                <a href="#" onclick="renderProducts('all'); scrollToCatalog()" class="hover:text-purple-400">Semua Katalog</a>
 
                <!-- DROPDOWN SKINCARE -->
            <div class="relative group">
-               <a href="#" class="hover:text-purple-400" onclick="renderProducts('skincare')">SKIN CARE</a>
+               <a href="#" class="hover:text-purple-400" onclick="renderProducts('skincare'); scrollToCatalog()">SKIN CARE</a>
            <div class="absolute hidden group-hover:block bg-white shadow-lg mt-2 p-4 text-xs space-y-2 rounded">
-                <a href="#" onclick="renderProducts('skincare','all')" class="block hover:text-purple-400">Semua</a>
-                <a href="#" onclick="renderProducts('skincare','serum')" class="block hover:text-purple-400">Serum</a>
-                <a href="#" onclick="renderProducts('skincare','moisturizer')" class="block hover:text-purple-400">Moisturizer</a>
-                <a href="#" onclick="renderProducts('skincare','toner')" class="block hover:text-purple-400">Toner</a>
-                <a href="#" onclick="renderProducts('skincare','sunscreen')" class="block hover:text-purple-400">Sunscreen</a>
-                <a href="#" onclick="renderProducts('skincare','cleanser')" class="block hover:text-purple-400">Cleanser</a>
-                <a href="#" onclick="renderProducts('skincare','lipcare')" class="block hover:text-purple-400">Lip Care</a>
+                <a href="#" onclick="renderProducts('skincare','all'); scrollToCatalog()" class="block hover:text-purple-400">Semua</a>
+                <a href="#" onclick="renderProducts('skincare','serum'); scrollToCatalog()" class="block hover:text-purple-400">Serum</a>
+                <a href="#" onclick="renderProducts('skincare','moisturizer'); scrollToCatalog()" class="block hover:text-purple-400">Moisturizer</a>
+                <a href="#" onclick="renderProducts('skincare','toner'); scrollToCatalog()" class="block hover:text-purple-400">Toner</a>
+                <a href="#" onclick="renderProducts('skincare','sunscreen'); scrollToCatalog()" class="block hover:text-purple-400">Sunscreen</a>
+                <a href="#" onclick="renderProducts('skincare','cleanser'); scrollToCatalog()" class="block hover:text-purple-400">Cleanser</a>
+                <a href="#" onclick="renderProducts('skincare','lipcare'); scrollToCatalog()" class="block hover:text-purple-400">Lip Care</a>
              </div>
           </div>
                  
-                <a href="#" class="hover:text-purple-400" onclick="renderProducts('bundling')">Bundling</a>
+                <a href="#" class="hover:text-purple-400" onclick="renderProducts('bundling'); scrollToCatalog()">Bundling</a>
             
             </div>
             <div class="flex items-center space-x-5">
@@ -220,31 +220,29 @@
 
     <script>
         const products = [
-            { id: 1, name: "Soy Bright! Moisturizer", category: "skincare", subCategory: "moisturizer", price: 150000, img: "skincare/poto1.jpeg", desc: "Mencerahkan, melembapkan, Merawat skin-barrier, melembutkan dan membantu mencegah tanda-tanda penuaan dini pada kulit wajah." },
-            { id: 2, name: "Ocean Blue Pea DUAL-PHASE ESSENCE MIST", category: "skincare", subCategory: "serum", price: 190000, img: "skincare/poto2.jpeg", desc: "Diformulasikan untuk membantu mempercepat penyerapan bahan aktif, untuk melembapkan kulit dan mencegah TEWL (Transepidermal Water Loss). Dapat mencegah penuaan dini serta kaya akan antioksidan yang membantu menjaga kesehatan skin barrier, menjaga stabilitas mikrobioma kulit dan menenangkan kemerahan, peradangan, serta membantu mencerahkan kulit." },
-            { id: 3, name: "Oatstanding BHA + LHA Acne Serum", category: "skincare", subCategory: "serum", price: 120000, img: "skincare/poto3.jpeg", desc: "Merawat kulit berjerawat, melawan bakteri penyebab jerawat, membantu mencerahkan noda bekas jerawat, dan melembapkan kulit wajah sehingga kulit tampak sehat dan terasa halus."},
-            { id: 4, name: "Hyd-rice-ing & Brightening", category: "skincare", subCategory: "toner", price: 150000, img: "skincare/poto4.jpeg", desc: "Diformulasikan untuk mencerahkan, menenangkan, dan menghidrasi kulit wajah sehingga terasa lembut dan halus."},
-            { id: 5, name: "Soy Clear! Brightening & Dark Spot Serum", category: "skincare", subCategory: "serum", price: 135000, img: "skincare/poto5.jpeg", desc: "Mencerahkan kulit wajah, menutrisi dan merawat kulit wajah, sehingga wajah terasa lembut dan lembap."},
+            { id: 1, name: "Soy Bright! Moisturizer", category: "skincare", subCategory: "moisturizer", price: 84000, img: "skincare/poto1.jpeg", desc: "Mencerahkan, melembapkan, Merawat skin-barrier, melembutkan dan membantu mencegah tanda-tanda penuaan dini pada kulit wajah." },
+            { id: 2, name: "Ocean Blue Pea DUAL-PHASE ESSENCE MIST", category: "skincare", subCategory: "serum", price: 97000, img: "skincare/poto2.jpeg", desc: "Diformulasikan untuk membantu mempercepat penyerapan bahan aktif, untuk melembapkan kulit dan mencegah TEWL (Transepidermal Water Loss). Dapat mencegah penuaan dini serta kaya akan antioksidan yang membantu menjaga kesehatan skin barrier, menjaga stabilitas mikrobioma kulit dan menenangkan kemerahan, peradangan, serta membantu mencerahkan kulit." },
+            { id: 3, name: "Oatstanding BHA + LHA Acne Serum", category: "skincare", subCategory: "serum", price: 95000, img: "skincare/poto3.jpeg", desc: "Merawat kulit berjerawat, melawan bakteri penyebab jerawat, membantu mencerahkan noda bekas jerawat, dan melembapkan kulit wajah sehingga kulit tampak sehat dan terasa halus."},
+            { id: 4, name: "Hyd-rice-ing & Brightening", category: "skincare", subCategory: "toner", price: 115000, img: "skincare/poto4.jpeg", desc: "Diformulasikan untuk mencerahkan, menenangkan, dan menghidrasi kulit wajah sehingga terasa lembut dan halus."},
+            { id: 5, name: "Soy Clear! Brightening & Dark Spot Serum", category: "skincare", subCategory: "serum", price: 95000, img: "skincare/poto5.jpeg", desc: "Mencerahkan kulit wajah, menutrisi dan merawat kulit wajah, sehingga wajah terasa lembut dan lembap."},
             { id: 6, name: "Sun-Rice All Day Invisible UV Shield SPF 50 PA++++", category: "skincare", subCategory: "sunscreen", price: 90000, img: "skincare/poto6.jpeg", desc: "Diformulasikan untuk memproteksi kulit dari bahaya sinar UV di cahaya matahari."},
-            { id: 7, name: "Soy Gentle! Face Cleanser", category: "skincare", subCategory: "cleanser", price: 150000, img: "skincare/poto7.jpeg", desc: "Membersihkan kulit wajah dari minyak, kotoran, debu dan sisa make up dengan membantu mengangkat sel-sel kulit mati." },
-            { id: 8, name: "C+U Honey Lip Serum", category: "skincare", subCategory: "lipcare", price: 150000, img: "skincare/poto8.jpeg", desc: "Diformulasikan dengan Vitamin C, Ubiquinone dan Manuka Honey untuk mencerahkan, melembapkan dan mengurangi tampilan bibir yang gelap" },
-            { id: 9, name: "Triple Vitamin B-arrier + Peach + Snail Mucin", category: "skincare", subCategory: "toner", price: 150000, img: "skincare/poto13.jpeg", desc: "Diformulasikan untuk membantu merawat skin barrier, melembapkan, menjaga hidrasi, serta meningkatkan kekencangan kulit. Selain itu, berfungsi menenangkan dan menutrisi kulit." },
-            { id: 10, name: "Peach + Vitamin B12 Double Barrier & Calming Serum", category: "skincare", subCategory: "serum", price: 150000, img: "skincare/poto14.jpeg", desc: "Diformulasikan dengan Vitamin C, Ubiquinone dan Manuka Honey untuk mencerahkan, melembapkan dan mengurangi tampilan bibir yang gelap" },
-            { id: 11, name: "Copper Peptide + Caviar Double Revive Serum", category: "skincare", subCategory: "serum", price: 150000, img: "skincare/poto16.jpeg", desc: "Diformulasikan dengan kandungan bahan aktif pilihan yang dapat merawat dan melembapkan kulit wajah, merawat kelembutan dan kekenyalan kulit, sehingga kulit wajah terasa halus dan lembut." },
-            { id: 12, name: "Bundle 2 PCS", category: "bundling", price: 150000, img: "skincare/bundling1.jpeg", desc: "Moisturizer & Makeup Primer 3og + Hydrating & Brightening Essence Booster 100ml" },
-            { id: 13, name: "Bright Prep Kit", category: "bundling", price: 150000, img: "skincare/bundling3.jpeg", desc: "Rice Serum + Soy Clear + Free Rice Toner" },
-            { id: 14, name: "Brightening Set", category: "bundling", price: 150000, img: "skincare/bundling2.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Brightening & Dark Spot Serum 20ml+ Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
-            { id: 15, name: "Exfoliating Set", category: "bundling", price: 150000, img: "skincare/bundling5.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Exfoliating Serum 20ml + Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
-            { id: 16, name: "Acne Set", category: "bundling", price: 150000, img: "skincare/bundling6.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Acne Serum 20ml + Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
-            { id: 17, name: "Skin-Barrier Set", category: "bundling", price: 150000, img: "skincare/bundling7.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Double Barrier & Calming Serum 20ml Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
-            { id: 18, name: "Anti-Aging Glowing Set", category: "bundling", price: 150000, img: "skincare/bundling8.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Copper Peptide Double Revive Serum 20ml Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
-
-        
+            { id: 7, name: "Soy Gentle! Face Cleanser", category: "skincare", subCategory: "cleanser", price: 98000, img: "skincare/poto7.jpeg", desc: "Membersihkan kulit wajah dari minyak, kotoran, debu dan sisa make up dengan membantu mengangkat sel-sel kulit mati." },
+            { id: 8, name: "C+U Honey Lip Serum", category: "skincare", subCategory: "lipcare", price: 87000, img: "skincare/poto8.jpeg", desc: "Diformulasikan dengan Vitamin C, Ubiquinone dan Manuka Honey untuk mencerahkan, melembapkan dan mengurangi tampilan bibir yang gelap" },
+            { id: 9, name: "Triple Vitamin B-arrier + Peach + Snail Mucin", category: "skincare", subCategory: "toner", price: 95000, img: "skincare/poto13.jpeg", desc: "Diformulasikan untuk membantu merawat skin barrier, melembapkan, menjaga hidrasi, serta meningkatkan kekencangan kulit. Selain itu, berfungsi menenangkan dan menutrisi kulit." },
+            { id: 10, name: "Peach + Vitamin B12 Double Barrier & Calming Serum", category: "skincare", subCategory: "serum", price: 135000, img: "skincare/poto14.jpeg", desc: "Diformulasikan dengan Vitamin C, Ubiquinone dan Manuka Honey untuk mencerahkan, melembapkan dan mengurangi tampilan bibir yang gelap" },
+            { id: 11, name: "Copper Peptide + Caviar Double Revive Serum", category: "skincare", subCategory: "serum", price: 82000, img: "skincare/poto16.jpeg", desc: "Diformulasikan dengan kandungan bahan aktif pilihan yang dapat merawat dan melembapkan kulit wajah, merawat kelembutan dan kekenyalan kulit, sehingga kulit wajah terasa halus dan lembut." },
+            { id: 12, name: "Bundle 2 PCS", category: "bundling", price: 155000, img: "skincare/bundling1.jpeg", desc: "Moisturizer & Makeup Primer 3og + Hydrating & Brightening Essence Booster 100ml" },
+            { id: 13, name: "Bright Prep Kit", category: "bundling", price: 163000, img: "skincare/bundling3.jpeg", desc: "Rice Serum + Soy Clear + Free Rice Toner" },
+            { id: 14, name: "Brightening Set", category: "bundling", price: 210000, img: "skincare/bundling2.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Brightening & Dark Spot Serum 20ml+ Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
+            { id: 15, name: "Exfoliating Set", category: "bundling", price: 225000, img: "skincare/bundling5.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Exfoliating Serum 20ml + Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
+            { id: 16, name: "Acne Set", category: "bundling", price: 235000, img: "skincare/bundling6.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Acne Serum 20ml + Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
+            { id: 17, name: "Skin-Barrier Set", category: "bundling", price: 205000, img: "skincare/bundling7.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Double Barrier & Calming Serum 20ml Moisturizer & Makeup Primer 30g + Sunscreen 50g" },
+            { id: 18, name: "Anti-Aging Glowing Set", category: "bundling", price: 232000, img: "skincare/bundling8.jpeg", desc: "Daily Cleanser 100ml + Hydrating & Brightening Essence Booster 100ml + Copper Peptide Double Revive Serum 20ml Moisturizer & Makeup Primer 30g + Sunscreen 50g" }
         ];
 
         let cart = [];
         let selectedProduct = null;
-        let discountAmount = 0;
+        let appliedPromos = [];
         let activePromoLabel = "";
 
         // 1. RENDER KATALOG PRODUK
@@ -325,114 +323,130 @@
         }
         // 4. PROMO SYSTEM
         function applyPromo() {
-            const code = document.getElementById('promo-input').value.trim().toUpperCase();
-            const subtotal = cart.filter(item => item.checked).reduce((sum, item) => sum + (item.price * item.qty), 0);
-            const msgEl = document.getElementById('promo-msg');
-            
-            discountAmount = 0;
-            activePromoLabel = "";
+              const code = document.getElementById('promo-input').value.trim().toUpperCase();
+              const subtotal = cart.filter(item => item.checked).reduce((sum, item) => sum + (item.price * item.qty), 0);
+              const msgEl = document.getElementById('promo-msg');
+    
+          if (subtotal === 0) {
+              msgEl.innerText = "Isi keranjang dulu!";
+              msgEl.className = "mt-2 text-xs font-medium text-red-500";
+          return;
+    }
 
-            if (subtotal === 0) {
-                msgEl.innerText = "Isi keranjang dulu!";
-                msgEl.className = "mt-2 text-xs font-medium text-red-500";
-                return;
-            }
+          // Cek agar kode yang sama tidak dimasukkan dua kali
+           if (appliedPromos.some(p => p.code === code)) {
+           msgEl.innerText = "Kode ini sudah terpasang!";
+           msgEl.className = "mt-2 text-xs font-medium text-orange-500";
+           return;
+    }
 
-            if (code === "OPALINE") {
-                discountAmount = subtotal * 0.1;
-                activePromoLabel = "Diskon Member Baru 10%";
-            } else if (code === "SKINCARE20" && subtotal >= 300000) {
-                discountAmount = subtotal * 0.2;
-                activePromoLabel = "Promo Skincare 20%";
-            } else if (code === "FLASHGLOW" && subtotal >= 500000) {
-                discountAmount = 150000;
-                activePromoLabel = "Potongan Cantik Rp50rb";
-            } else if (code === "RADIANCE20") {
-                discountAmount = 200000;
-                activePromoLabel = "Subsidi Ongkir";
-            } else if (code === "FLASHSALE") {
-                discountAmount = 100000;
-                activePromoLabel = "Flash Sale";
-            } else if (code === "PAKETGLOW") {
-                discountAmount = 250000;
-                activePromoLabel = "Potongan Harga Untuk Paket Skincare";
-            } else if (code === "") {
-                msgEl.innerText = "";
-            } else {
-                msgEl.innerText = "Kode tidak valid / syarat tidak cukup";
-                msgEl.className = "mt-2 text-xs font-medium text-red-500";
-                updateCartUI();
-                return;
-            }
+    let promoData = null;
+
+    // Daftar semua kode promo sesuai data kamu
+    if (code === "OPALINE") {
+        promoData = { code: code, amount: subtotal * 0.1, label: "Diskon Member Baru 10%" };
+    } else if (code === "SKINCARE20" && subtotal >= 300000) {
+        promoData = { code: code, amount: subtotal * 0.2, label: "Promo Skincare 20%" };
+    } else if (code === "FLASHGLOW" && subtotal >= 500000) {
+        promoData = { code: code, fixedAmount: 150000, label: "Potongan Cantik Rp50rb" };
+    } else if (code === "RADIANCE20") {
+        promoData = { code: code, fixedAmount: 200000, label: "Subsidi Ongkir" };
+    } else if (code === "FLASHSALE") {
+        promoData = { code: code, fixedAmount: 100000, label: "Flash Sale" };
+    } else if (code === "PAKETGLOW") {
+        promoData = { code: code, fixedAmount: 250000, label: "Potongan Harga Paket" };
+    }
+
+    if (promoData) {
+        appliedPromos.push(promoData);
+        msgEl.innerText = "Kode Berhasil Digunakan!";
+        msgEl.className = "mt-2 text-xs font-medium text-green-600";
+        document.getElementById('promo-input').value = ""; // Bersihkan kolom input
+    } else {
+        msgEl.innerText = "Kode tidak valid / syarat tidak cukup";
+        msgEl.className = "mt-2 text-xs font-medium text-red-500";
+        updateCartUI();
+    }
+
 
             msgEl.innerText = activePromoLabel ? "Kode Berhasil Digunakan!" : "";
             msgEl.className = "mt-2 text-xs font-medium text-green-600";
             updateCartUI();
         }
 
-        function updateCartUI() {
-            const container = document.getElementById('cart-items');
-            const subtotalEl = document.getElementById('subtotal-price');
-            const discountRow = document.getElementById('discount-row');
-            const totalEl = document.getElementById('total-price');
-            const countEl = document.getElementById('cart-count');
+       function updateCartUI() {
+    const container = document.getElementById('cart-items');
+    const subtotalEl = document.getElementById('subtotal-price');
+    const discountRow = document.getElementById('discount-row');
+    const totalEl = document.getElementById('total-price');
+    const countEl = document.getElementById('cart-count');
 
-            let subtotal = 0;
-            let count = 0;
+    let subtotal = 0;
+    let count = 0;
 
-            if (cart.length === 0) {
-                container.innerHTML = '<p class="text-center text-gray-400 mt-10">Keranjang masih kosong...</p>';
-                discountAmount = 0;
-            } else {
-                container.innerHTML = cart.map((item, i) => {
-                    if (item.checked) {
-                    subtotal += item.price * item.qty;
-                    }
-                    count += item.qty; // ini biarin (buat icon jumlah)
-                    return `
-                        <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-lg">
+    // 1. Hitung Subtotal (Hanya yang dicentang)
+    if (cart.length === 0) {
+        container.innerHTML = '<p class="text-center text-gray-400 mt-10">Keranjang masih kosong...</p>';
+        appliedPromos = []; 
+    } else {
+        container.innerHTML = cart.map((item, i) => {
+            if (item.checked) subtotal += item.price * item.qty;
+            count += item.qty;
+            return `
+                <div class="flex items-center gap-4 bg-gray-50 p-3 rounded-lg">
+                    <input type="checkbox" ${item.checked ? "checked" : ""} onchange="toggleItem(${i})" class="w-4 h-4 accent-purple-500">
+                    <img src="${item.img}" class="w-16 h-16 object-cover rounded">
+                    <div class="flex-1">
+                        <h5 class="text-[11px] font-bold uppercase tracking-tight">${item.name}</h5>
+                        <p class="text-black font-bold text-xs mt-1">Rp${item.price.toLocaleString('id-ID')}</p>
+                        <div class="flex items-center gap-3 mt-2">
+                            <button onclick="changeQty(${i}, -1)" class="w-6 h-6 bg-white border rounded">-</button>
+                            <span>${item.qty}</span>
+                            <button onclick="changeQty(${i}, 1)" class="w-6 h-6 bg-white border rounded">+</button>
+                        </div>
+                    </div>
+                    <p class="font-bold text-sm">Rp${(item.price * item.qty).toLocaleString('id-ID')}</p>
+                </div>`;
+        }).join('');
+    }
 
-                        <input type="checkbox" ${item.checked ? "checked" : ""} 
-                        onchange="toggleItem(${i})" class="w-4 h-4 accent-purple-500">
+    // 2. LOGIKA KRUSIAL: Hitung TOTAL dari SEMUA promo yang terdaftar
+    let totalDiscount = 0;
+    let promoLabels = [];
 
-                       <img src="${item.img}" class="w-16 h-16 object-cover rounded">
+    // Kita filter ulang: hanya simpan promo yang syarat subtotalnya masih terpenuhi
+    appliedPromos = appliedPromos.filter(p => {
+        if (p.code === "SKINCARE20" && subtotal < 300000) return false;
+        if (p.code === "FLASHGLOW" && subtotal < 500000) return false;
+        return true;
+    });
 
-                       <div class="flex-1">
-                       <h5 class="text-[11px] font-bold uppercase tracking-tight">${item.name}</h5>
-                       <p class="text-black font-bold text-xs mt-1">Rp${item.price.toLocaleString('id-ID')}</p>
-        
-                       <div class="flex items-center gap-3 mt-2">
-                          <button onclick="changeQty(${i}, -1)" class="w-6 h-6 bg-white border rounded">-</button>
-                          <span>${item.qty}</span>
-                         <button onclick="changeQty(${i}, 1)" class="w-6 h-6 bg-white border rounded">+</button>
-                       </div>
-                 </div>
+    appliedPromos.forEach(p => {
+        let currentAmount = 0;
+        // Hitung ulang nominal diskon berdasarkan subtotal terbaru
+        if (p.code === "OPALINE") currentAmount = subtotal * 0.1;
+        else if (p.code === "SKINCARE20") currentAmount = subtotal * 0.2;
+        else currentAmount = p.fixedAmount; // Untuk diskon nominal (Rp)
 
-                      <p class="font-bold text-sm">
-                      Rp${(item.price * item.qty).toLocaleString('id-ID')}
-                      </p>
-                 </div>
-                `;
-                }).join('');
-            }
+        totalDiscount += currentAmount;
+        promoLabels.push(p.label);
+    });
 
-            // Validasi ulang diskon jika subtotal berubah
-            if (activePromoLabel === "Promo Skincare 20%" && subtotal < 300000) discountAmount = 0;
-            if (activePromoLabel === "Potongan Cantik Rp50rb" && subtotal < 500000) discountAmount = 0;
+    // 3. Update Tampilan Harga
+    subtotalEl.innerText = `Rp${subtotal.toLocaleString('id-ID')}`;
+    countEl.innerText = count;
 
-            subtotalEl.innerText = `Rp${subtotal.toLocaleString('id-ID')}`;
-            countEl.innerText = count;
+    if (totalDiscount > 0) {
+        discountRow.classList.remove('hidden');
+        // Menampilkan semua nama promo yang aktif dipisahkan koma
+        document.getElementById('promo-name').innerText = promoLabels.join(", ");
+        document.getElementById('discount-val').innerText = `-Rp${totalDiscount.toLocaleString('id-ID')}`;
+    } else {
+        discountRow.classList.add('hidden');
+    }
 
-            if (discountAmount > 0) {
-                discountRow.classList.remove('hidden');
-                document.getElementById('promo-name').innerText = activePromoLabel;
-                document.getElementById('discount-val').innerText = `-Rp${discountAmount.toLocaleString('id-ID')}`;
-            } else {
-                discountRow.classList.add('hidden');
-            }
-
-            totalEl.innerText = `Rp${Math.max(0, subtotal - discountAmount).toLocaleString('id-ID')}`;
-        }
+    totalEl.innerText = `Rp${Math.max(0, subtotal - totalDiscount).toLocaleString('id-ID')}`;
+}
 
         // 5. MODAL DETAIL
         function openModal(id) {
