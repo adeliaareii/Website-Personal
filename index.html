@@ -88,17 +88,28 @@
     .btn-click:active {
         transform: scale(0.95);
     }
+    .container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    }
 </style>
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans">
 
     <div class="bg-gray-100 text-[10px] text-center py-1 tracking-widest uppercase">Gratis ongkos kirim ke seluruh Indonesia</div>
-    <nav class="bg-#ca9edf shadow-sm sticky top-0 z-50">
+    <nav class="shadow-sm sticky top-0 z-50">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold tracking-[0.2em] text-gray-800 cursor-pointer">Opaline Beauty</h1>
             <div class="hidden md:flex space-x-8 text-xs font-semibold uppercase tracking-wider">
+
+                <div class="flex items-center space-x-4">
+            
+               <button onclick="toggleMenu()" class="md:hidden text-2xl text-gray-800"> <i class="fa-solid fa-bars"></i></button>
+
+               </div>
                 
-                <div class="hidden md:flex space-x-8 text-xs font-semibold uppercase tracking-wider">
+                <div id="mobile-menu" class="hidden md:flex space-x-8 text-xs font-semibold uppercase tracking-wider">
     
                 <a href="#" onclick="renderProducts('all'); scrollToCatalog(); return false;" class="hover:text-purple-400">Semua Katalog</a>
 
@@ -130,7 +141,7 @@
         </div>
     </nav>
 
-    <div class="relative w-full h-[350px] md:h-[500px] overflow-hidden bg-gray-200">
+    <div class="relative w-full h-[250px] md:h-[500px] overflow-hidden bg-gray-200">
         <div class="slider-img active h-full relative">
             <img src="skincare/poto10.png" class="w-full h-full object-cover">
             <div class="absolute inset-0 bg-black/10 flex flex-col justify-center px-10">
@@ -256,7 +267,7 @@
             grid.innerHTML = filtered.map(p => `
                 <div class="bg-white p-4 product-card fade-up-border border-gray-100 rounded shadow-sm cursor-pointer group" onclick="openModal(${p.id})">
                     <div class="relative overflow-hidden mb-4 rounded">
-                        <img src="${p.img}" class="w-full h-56 object-cover group-hover:scale-110 transition duration-500">
+                        <img src="${p.img}" class="w-full h-40 md:h-56 object-cover group-hover:scale-110 transition duration-500">
                     </div>
                     <h4 class="text-sm font-bold text-center text-gray-700 uppercase h-10 overflow-hidden">${p.name}</h4>
                     <p class="text-center font-bold text-black-600 mt-2">Rp${p.price.toLocaleString('id-ID')}</p>
@@ -275,9 +286,12 @@
         }
         setInterval(() => moveSlider(1), 15000); // Auto slide setiap 5 detik
 
-        // 3. CART SYSTEM
         function toggleCart() {
-            document.getElementById('cart-sidebar').classList.toggle('translate-x-full');
+             document.getElementById('cart-sidebar').classList.toggle('translate-x-full');
+        }
+
+        function toggleMenu() {
+              document.getElementById("mobile-menu").classList.toggle("hidden");
         }
 
         function addToCart(id) {
